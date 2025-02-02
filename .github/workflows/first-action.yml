@@ -1,0 +1,29 @@
+name: Vite react CI using github host
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+  strategy:
+  matrix:
+    node-version: [16, 17, 18]
+
+  steps:
+    -name: checkout repo
+     use: actions/checkout@v3
+    
+    -name: set up node.js
+     use: actions/setup-node@v3
+     with:
+        node-version: ${{matrix. node-version}}
+    
+    -name: Install depencies
+     run: npm insatll
+
+    -name: build Project
+     run: npm run build
+
+
+
